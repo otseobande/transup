@@ -30,6 +30,7 @@ jobs:
         - ssh -o StrictHostKeyChecking=no -i awskey ${STAGING_SERVER_USER}@${STAGING_SERVER} "
           cd /srv/transup &&
           sudo git pull &&
+          sudo git checkout ch-setup-ci-cd-167439358 &&
           sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
           sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
       if: branch == develop OR branch == ch-setup-ci-cd-167439358
