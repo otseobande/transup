@@ -27,10 +27,10 @@ jobs:
       script:
         - echo ${AWS_KEY} | base64 -d > awskey
         - chmod 400 ./awskey
-        - ssh  -o StrictHostKeyChecking=no -i awskey ${STAGING_SERVER_USER}@${STAGING_SERVER} "
+        - ssh -o StrictHostKeyChecking=no -i awskey ${STAGING_SERVER_USER}@${STAGING_SERVER} "
           cd /srv/transup &&
-          git pull &&
-          docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
-          docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
+          sudo git pull &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
       if: branch == develop OR branch == ch-setup-ci-cd-167439358
 
