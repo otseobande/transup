@@ -21,3 +21,16 @@ jobs:
         - sudo mv docker-compose /usr/local/bin
         - printenv > .env
       script: docker-compose run app python manage.py test
+
+    - name: staging_deployment
+      stage: deploy
+      script:
+        - echo ${AWS_KEY} | base64 -d > awskey
+        - apt-get install openssh-server
+        - ssh -i awskey ${STAGING_SERVER_USER}@${STAGING_SERVER} "
+          cd /srv/transup &&
+          git pull &&
+          docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
+          docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
+      if: branch == develop OR branch == ch-setup-ci-cd-167439358
+

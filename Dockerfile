@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 
-CMD cd transup && gunicorn -w 1 -k gthread --thread=2 --log-level DEBUG --bind 0.0.0.0:8000 transup.wsgi
+CMD gunicorn -w 1 -k gthread --thread=2 --log-level DEBUG --bind 0.0.0.0:8000 transup.wsgi
