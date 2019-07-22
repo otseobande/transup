@@ -24,4 +24,4 @@ services:
       - ${HOME}/config:/config
       - ./nginx.conf:/config/nginx/site-confs/default
     depends_on:
-      - api_app
+      - app
