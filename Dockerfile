@@ -4,7 +4,7 @@ LABEL maintainer="otseobande@gmail.com"
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y python3-dev libpulse-dev binutils libproj-dev gdal-bin postgis
+RUN apt-get update && apt-get install -y python3-dev libpulse-dev binutils libproj-dev gdal-bin postgis postgresql-9.3-postgis-scripts
 
 COPY ./requirements.txt /app/requirements.txt
 
