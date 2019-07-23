@@ -41,7 +41,7 @@ python manage.py runserver
 
 ### Documentation
 
-- [Swagger Documentation](http://ec2-3-16-150-193.us-east-2.compute.amazonaws.com/api/v1/docs/)
+- [Swagger Documentation](http://ec2-13-58-177-108.us-east-2.compute.amazonaws.com/api/v1/docs/)
 
 ### Testing
 
