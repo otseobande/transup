@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.gis',
     'phonenumber_field',
     'rest_framework',
     'django_nose',
@@ -82,7 +81,7 @@ WSGI_APPLICATION = 'transup.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': env_config('DB_NAME'),
         'USER': env_config('DB_USER'),
         'PASSWORD': env_config('DB_PASSWORD'),
