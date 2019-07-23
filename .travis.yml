@@ -1,0 +1,49 @@
+language: python
+
+dist: xenial
+
+python:
+  - "3.7"
+
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.23.2
+
+jobs:
+  include:
+    - stage: test
+      before_install:
+        - sudo rm /usr/local/bin/docker-compose
+        - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+        - chmod +x docker-compose
+        - sudo mv docker-compose /usr/local/bin
+        - printenv > .env
+      script: docker-compose run app python manage.py test
+      after_success:
+        - codecov
+
+    - name: staging_deployment
+      stage: deploy
+      script:
+        - echo ${AWS_KEY} | base64 -d > awskey
+        - chmod 400 ./awskey
+        - ssh -o StrictHostKeyChecking=no -i awskey ${STAGING_SERVER_USER}@${STAGING_SERVER} "
+          cd /srv/transup &&
+          sudo git pull &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --force-recreate --build -d"
+      if: branch == develop
+
+    - name: production_deployment
+      stage: deploy
+      script:
+        - echo ${AWS_KEY} | base64 -d > awskey
+        - chmod 400 ./awskey
+        - ssh -o StrictHostKeyChecking=no -i awskey ${PRODUCTION_SERVER_USER}@${PRODUCTION_SERVER} "
+          cd /srv/transup &&
+          sudo git pull &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --force-recreate --build -d"
+      if: branch == master
