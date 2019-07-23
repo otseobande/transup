@@ -21,3 +21,27 @@ jobs:
         - sudo mv docker-compose /usr/local/bin
         - printenv > .env
       script: docker-compose run app python manage.py test
+
+    - name: staging_deployment
+      stage: deploy
+      script:
+        - echo ${AWS_KEY} | base64 -d > awskey
+        - chmod 400 ./awskey
+        - ssh -o StrictHostKeyChecking=no -i awskey ${STAGING_SERVER_USER}@${STAGING_SERVER} "
+          cd /srv/transup &&
+          sudo git pull &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
+      if: branch == develop
+
+    - name: production_deployment
+      stage: deploy
+      script:
+        - echo ${AWS_KEY} | base64 -d > awskey
+        - chmod 400 ./awskey
+        - ssh -o StrictHostKeyChecking=no -i awskey ${PRODUCTION_SERVER_USER}@${PRODUCTION_SERVER} "
+          cd /srv/transup &&
+          sudo git pull &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
+          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
+      if: branch == master
