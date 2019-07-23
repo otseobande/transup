@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_nose',
     'drf_yasg',
-    'providers'
+    'providers',
+    'serviceareas'
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'transup.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': env_config('DB_NAME'),
         'USER': env_config('DB_USER'),
         'PASSWORD': env_config('DB_PASSWORD'),
@@ -134,7 +135,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # Tell nose to measure coverage on the 'foo' and 'bar' apps
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=providers',
+    '--cover-package=providers,serviceareas',
 ]
 
 REST_FRAMEWORK = {

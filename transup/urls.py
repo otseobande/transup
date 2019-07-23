@@ -7,6 +7,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # views
 from transup.views import index
 from providers.views import ProviderViewSet
+from serviceareas.views import ServiceAreaViewSet
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -24,6 +25,7 @@ schema_view = get_schema_view(
 
 router = routers.DefaultRouter()
 router.register(r'providers', ProviderViewSet)
+router.register(r'service-areas', ServiceAreaViewSet)
 
 urlpatterns = [
     path('', index),

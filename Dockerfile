@@ -4,7 +4,7 @@ LABEL maintainer="otseobande@gmail.com"
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y python3-dev libpulse-dev
+RUN apt-get update && apt-get install -y python3-dev libpulse-dev binutils libproj-dev gdal-bin
 
 COPY ./requirements.txt /app/requirements.txt
 
