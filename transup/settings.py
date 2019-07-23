@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'transup.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': env_config('DB_NAME'),
         'USER': env_config('DB_USER'),
         'PASSWORD': env_config('DB_PASSWORD'),
