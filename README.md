@@ -39,6 +39,10 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
+### Documentation
+
+- [Swagger Documentation](http://ec2-3-16-150-193.us-east-2.compute.amazonaws.com/api/v1/docs/)
+
 ### Testing
 
 Run `python manage.py test` to run tests
