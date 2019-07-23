@@ -52,4 +52,3 @@ Run `python manage.py test` to run tests
 ## Project Management
 
 [Pivotal Tracker](https://www.pivotaltracker.com) is used for this project. You can find the management board [here](https://www.pivotaltracker.com/n/projects/2376016).
-g

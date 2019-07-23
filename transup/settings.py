@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'django_nose',
+    'drf_yasg',
     'providers'
 ]
 
@@ -144,4 +145,16 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 50
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic'
+        }
+    },
+}
+
+REDOC_SETTINGS = {
+   'LAZY_RENDERING': False,
 }
