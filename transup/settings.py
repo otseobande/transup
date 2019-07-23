@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'phonenumber_field',
     'rest_framework',
     'django_nose',
     'drf_yasg',
-    'providers'
+    'providers',
+    'serviceareas'
 ]
 
 MIDDLEWARE = [
@@ -134,7 +136,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # Tell nose to measure coverage on the 'foo' and 'bar' apps
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=providers',
+    '--cover-package=providers,serviceareas',
 ]
 
 REST_FRAMEWORK = {

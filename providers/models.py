@@ -19,4 +19,7 @@ class Provider(BaseModel):
     language = models.CharField(max_length=50)
     currency = models.CharField(max_length=20)
 
+    class Meta:
+        ordering = ['-created']
+
 
