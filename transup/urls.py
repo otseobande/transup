@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers, permissions
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # views
 from transup.views import index
@@ -34,3 +35,5 @@ urlpatterns = [
     url(r'^api/v1/docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^api/v1/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
