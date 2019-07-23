@@ -32,7 +32,8 @@ jobs:
           sudo git pull &&
           sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
           sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
-      if: branch == develop
+      on:
+        branch: develop
 
     - name: production_deployment
       stage: deploy
@@ -44,4 +45,5 @@ jobs:
           sudo git pull &&
           sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml down &&
           sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
-      if: branch == master
+      on:
+        branch: master
