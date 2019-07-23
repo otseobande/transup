@@ -21,6 +21,8 @@ jobs:
         - sudo mv docker-compose /usr/local/bin
         - printenv > .env
       script: docker-compose run app python manage.py test
+      after_success:
+        - codecov
 
     - name: staging_deployment
       stage: deploy
