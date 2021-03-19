@@ -11,7 +11,7 @@ Django==2.2.3
 django-nose==1.4.6
 django-phonenumber-field==3.0.1
 django-rest-swagger==2.2.0
-djangorestframework==3.10.1
+djangorestframework==3.11.2
 djangorestframework-gis==0.14
 drf-yasg==1.16.1
 gunicorn==19.9.0
